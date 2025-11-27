@@ -9,14 +9,26 @@ This document outlines how to set up and run this project using Podman.
 
 ## Running the Project
 
-To run the project in an interactive bash session within a Podman container, use the following command:
+Follow these steps to set up and run the project:
 
-```bash
-podman run --rm -it \
-  -v ./:/workspace:z \
-  -v ~/Projects/opencode/share:/root/.local/share/opencode:z \
-  opencode:latest bash
-```
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/m-fadil/podman-opencode.git
+    cd podman-opencode
+    ```
+
+2.  **Build the Podman image:**
+    ```bash
+    podman build -t opencode:latest .
+    ```
+
+3.  **Run the Podman container:**
+    ```bash
+    podman run --rm -it \
+      -v ./:/workspace:z \
+      -v ~/Projects/opencode/share:/root/.local/share/opencode:z \
+      opencode:latest opencode
+    ```
 
 ### Command Breakdown:
 
@@ -25,9 +37,7 @@ podman run --rm -it \
 - `-v ./:/workspace:z`: Mount the current directory on your host machine to `/workspace` inside the container. The `:z` option is for SELinux relabeling.
 - `-v ~/Projects/opencode/share:/root/.local/share/opencode:z`: Mount your local `~/Projects/opencode/share` directory to `/root/.local/share/opencode` inside the container. This is likely for sharing data or configurations with the `opencode` environment.
 - `opencode:latest`: The name and tag of the Podman image to use.
-- `bash`: The command to execute inside the container, which starts a bash shell.
-
-Once inside the container, you will be in the `/workspace` directory, which mirrors your project directory on the host. You can then execute your project-specific commands.
+- `opencode`: The command to execute inside the container, which starts the opencode application.
 
 ## Git Ignore
 
