@@ -24,7 +24,7 @@ Follow these steps to set up and run the project:
 
 3.  **Run the Podman container:**
     ```bash
-    podman run --rm -it \
+    podman run --name opencode-container --rm -it \
       -v ./:/workspace:z \
       -v ~/Projects/opencode/share:/root/.local/share/opencode:z \
       opencode:latest opencode
@@ -32,6 +32,7 @@ Follow these steps to set up and run the project:
 
 ### Command Breakdown:
 
+- `--name opencode-container`: Assigns the name `opencode-container` to the running container for easier management.
 - `--rm`: Automatically remove the container when it exits.
 - `-it`: Run in interactive mode and allocate a pseudo-TTY.
 - `-v ./:/workspace:z`: Mount the current directory on your host machine to `/workspace` inside the container. The `:z` option is for SELinux relabeling.
